@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useStore } from './store';
 import { Calendar, MapPin, Trash2, LogOut, PlusCircle, Search, User } from 'lucide-react';
 
-const API_URL = "http://localhost:5000/api"; 
+// ✅ আপনার লাইভ সার্ভারের লিঙ্ক বসানো হয়েছে
+const API_URL = "https://event-server-h9x97j3xy-007jisans-projects.vercel.app/api"; 
 
 // --- ন্যাপবার ---
 const Navbar = () => {
@@ -88,7 +89,7 @@ const Home = () => {
   );
 };
 
-// --- ড্যাশবোর্ড (FIXED TEXT COLOR) ---
+// --- ড্যাশবোর্ড ---
 const Dashboard = () => {
   const { user } = useStore();
   const [events, setEvents] = useState([]);
@@ -133,57 +134,19 @@ const Dashboard = () => {
               <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-indigo-600">
                 <PlusCircle size={20}/> Create Event
               </h3>
-              
-              {/* --- ফর্ম --- */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                
-                {/* Title Input */}
-                <input 
-                  placeholder="Event Title" 
-                  className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition placeholder-gray-400" 
-                  value={form.title} 
-                  onChange={e => setForm({...form, title: e.target.value})} 
-                />
-                
+                <input placeholder="Event Title" className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition placeholder-gray-400" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
                 <div className="grid grid-cols-2 gap-3">
-                  {/* Date Input */}
-                  <input 
-                    type="date" 
-                    className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none" 
-                    value={form.date} 
-                    onChange={e => setForm({...form, date: e.target.value})} 
-                  />
-                  
-                  {/* Category Select */}
-                  <select 
-                    className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none" 
-                    value={form.category} 
-                    onChange={e => setForm({...form, category: e.target.value})}
-                  >
+                  <input type="date" className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none" value={form.date} onChange={e => setForm({...form, date: e.target.value})} />
+                  <select className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 outline-none" value={form.category} onChange={e => setForm({...form, category: e.target.value})}>
                     <option value="Tech">Tech</option>
                     <option value="Music">Music</option>
                     <option value="Art">Art</option>
                     <option value="Sports">Sports</option>
                   </select>
                 </div>
-
-                {/* Location Input */}
-                <input 
-                  placeholder="Location" 
-                  className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400" 
-                  value={form.location} 
-                  onChange={e => setForm({...form, location: e.target.value})} 
-                />
-
-                {/* Description Textarea */}
-                <textarea 
-                  rows="3" 
-                  placeholder="Description..." 
-                  className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400" 
-                  value={form.description} 
-                  onChange={e => setForm({...form, description: e.target.value})} 
-                />
-
+                <input placeholder="Location" className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400" value={form.location} onChange={e => setForm({...form, location: e.target.value})} />
+                <textarea rows="3" placeholder="Description..." className="w-full bg-white text-gray-900 border border-gray-300 p-3 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none placeholder-gray-400" value={form.description} onChange={e => setForm({...form, description: e.target.value})} />
                 <button className="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 hover:shadow-lg transition">Publish Event</button>
               </form>
             </div>
